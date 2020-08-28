@@ -2,6 +2,28 @@ def solution(s):
     # 표현한 문자열 중 가장 짧은 것의 길이 (answer)
     answer = 0
     L = len(s)
+    for l in range(1, L//2+1):
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if L == 1:
         return L
     answer = L
