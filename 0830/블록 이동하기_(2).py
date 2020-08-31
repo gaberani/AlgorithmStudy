@@ -8,7 +8,7 @@ def bfs(r1, r2, new_board):
     # 1. 4방향 이동
     for d in dir:
         if new_board[r1[0] + d[0]][r1[1] + d[1]] == 0 and new_board[r2[0] + d[0]][r2[1] + d[1]] == 0:
-            cases.append({(r1[0] + d[0], r1[1] + d[1]), (r2[0] + d[0], r2[1] + d[1])})
+            cases.append({(r1[0]+d[0], r1[1]+d[1]), (r2[0]+d[0], r2[1]+d[1])})
 
     rotate = [1, -1]
     # 2. 가로회전 시키는 경우
@@ -21,9 +21,9 @@ def bfs(r1, r2, new_board):
     # 3. 세로회전 시키는 경우
     else:
         for r in rotate:
-            if new_board[r1[0]][r1[1] + r] == 0 and new_board[r2[0]][r2[1] + r] == 0:
-                cases.append({(r1[0], r1[1]), (r1[0], r1[1] + r)})
-                cases.append({(r2[0], r2[1]), (r2[0], r2[1] + r)})
+            if new_board[r1[0]][r1[1]+r] == 0 and new_board[r2[0]][r2[1]+r] == 0:
+                cases.append({(r1[0], r1[1]), (r1[0], r1[1]+r)})
+                cases.append({(r2[0], r2[1]), (r2[0], r2[1]+r)})
     return cases
 
 def solution(board):
@@ -42,14 +42,14 @@ def solution(board):
     visit.append({(1, 1), (1, 2)})
 
     while q:
-        temp = q.popleft()
-        robot = list(temp[0])
-        D = temp[1] + 1
+        tmp = q.popleft()
+        robot = list(tmp[0])
+        D = tmp[1] + 1
         for m in bfs(robot[0], robot[1], new_board):
             # 도착하면 최소 시간으로 바로 리턴
             if (L, L) in m:
                 return D
-            #
+            # 방문 배열에 없으면 추가
             if not m in visit:
                 q.append([m, D])
                 visit.append(m)
