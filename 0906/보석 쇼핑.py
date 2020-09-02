@@ -1,5 +1,13 @@
 def solution(gems):
-    answer = []
+    answer = [] # === 진열된 모든 종류의 보석을 적어도 1개 이상 포함하는 가장 짧은 구간
+    L = len(gems)
+    only_gems = (set(gems))
+    answerLength = len(only_gems)
+    # 답의 길이는 최소 모든 종류 1개씩부터 시작
+    for n in range(answerLength, L+1):
+        for i1 in range(0, L-n):
+            for i2 in range(i1+1, L):
+                part_gems = gems[i1:i2]
     return answer
 
 
