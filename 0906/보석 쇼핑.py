@@ -6,16 +6,16 @@ def solution(gems):
     for n in range(answerLength, 0, -1):
         for i1 in range(L-n+1, -1, -1):
             part_gems = gems[i1:i1+n]
-            if len(list(set(part_gems))) == answerLength:
+            if len((set(part_gems))) is answerLength:
                 answer = [i1+1, i1+n]
-                print(part_gems)
+                # print(part_gems)
     if answer == []:
         for n in range(L, answerLength, -1):
             for i1 in range(L-n+1, -1, -1):
                 part_gems = gems[i1:i1+n]
-                if len(list(set(part_gems))) == answerLength:
+                if len((set(part_gems))) is answerLength:
                     answer = [i1+1, i1+n]
-                    print(part_gems)
+                    # print(part_gems)
     return answer
 
 print(solution(["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]))
