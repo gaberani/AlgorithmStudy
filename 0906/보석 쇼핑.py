@@ -1,21 +1,34 @@
+# 참고 : https://hose0728.tistory.com/78
 def solution(gems):
-    answer = []
-    L = len(gems)   # 8, 5
-    only_gems = list(set(gems)) # 4, 3
-    answerLength = len(only_gems)
-    for n in range(answerLength, 0, -1):
-        for i1 in range(L-n+1, -1, -1):
-            part_gems = gems[i1:i1+n]
-            if len((set(part_gems))) is answerLength:
-                answer = [i1+1, i1+n]
-                # print(part_gems)
-    if answer == []:
-        for n in range(L, answerLength, -1):
-            for i1 in range(L-n+1, -1, -1):
-                part_gems = gems[i1:i1+n]
-                if len((set(part_gems))) is answerLength:
-                    answer = [i1+1, i1+n]
-                    # print(part_gems)
+    gemsLength = len(gems)
+    answer = [0, gemsLength-1]
+    answerLength = len((set(gems)))
+    # gemDict = {i: 0 for i in set(gems)}
+    gemDict = {gems[0]: 1}
+    s, e = 0, 0
+    while s < gemsLength and e < gemsLength:
+        # 정답 길이와 같으면
+        if len(gemDict) == answerLength:
+            # 길이 비교후 작으면 갱신
+            if answer[1] - answer[0] > e - s:
+                answer[0], answer[1] = s, e
+            if gemDict[gems[s]] == 1:
+                del gemDict[gems[s]]
+            else:
+                gemDict[gems[s]] -= 1
+            s += 1
+        else:
+            e += 1
+            # e가 범위를 초과함.
+            if e == gemsLength:
+                break
+            else:
+                if gemDict.get(gems[e]) is None:
+                    gemDict[gems[e]] = 1
+                else:
+                    gemDict[gems[e]] += 1
+    answer[0] += 1
+    answer[1] += 1
     return answer
 
 print(solution(["DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"]))
