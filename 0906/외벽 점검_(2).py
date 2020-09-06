@@ -22,3 +22,21 @@ def solution(n, weak, dists):
     # 길이를 두 배로 늘림(시계, 반시계 신경 안쓰기 위해)
     for i in range(len_W):
         weak.append(weak[i] + n)
+
+    for i in range(len_W):
+        start = [weak[j] for j in range(i, i + len_W)]
+        for order in friends:
+            friend_idx, friend_cnt = 0, 1
+            possible_length = start[0] + order[friend_idx]
+            for idx in range(len_W):
+                # 만약 확인할 수 있는 최대 거리를 넘으면 다음 친구 추가
+                if start[idx] > possible_length:
+                    friend_cnt += 1
+                    if friend_cnt > len(order):
+                        break
+                    friend_idx += 1
+                    possible_length = start[idx] + order[friend_idx]
+            answer = min(answer, friend_cnt)
+    if answer == len_D + 1:
+        return -1
+    return answer
