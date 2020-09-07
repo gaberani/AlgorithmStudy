@@ -4,7 +4,7 @@ class Node(object):
         self.data = data
         self.children = {}
 
-
+# 단어로 시작해서 검색하게 만들기
 class Trie(object):
     def __init__(self):
         self.head = Node(None)
@@ -101,4 +101,4 @@ def solution(words, queries):
 
 
 print(solution(["frodo", "front", "frost", "frozen", "frame", "KaKao"],
-               ["fro??", "????o", "fr???", "fro???", "pro?"]))
+               ["fro??", "????o", "fr???", "fro???", "pro?",]))

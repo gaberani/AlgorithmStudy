@@ -5,9 +5,9 @@ import copy
 def solution(n, weak, dists):
     len_W = len(weak)
     len_D = len(dists)
-    answer = len_D + 1
+    answer = len_D+1
 
-    # 순열
+    # 친구 순서 만들기
     friends = []
     def f(n, k):
         if n == k:
@@ -15,7 +15,7 @@ def solution(n, weak, dists):
         else:
             for i in range(n, k):
                 dists[n], dists[i] = dists[i], dists[n]
-                f(n + 1, k)
+                f(n+1, k)
                 dists[n], dists[i] = dists[i], dists[n]
     f(0, len(dists))
 
@@ -24,7 +24,7 @@ def solution(n, weak, dists):
         weak.append(weak[i] + n)
 
     for i in range(len_W):
-        start = [weak[j] for j in range(i, i + len_W)]
+        start = [weak[j] for j in range(i, i+len_W)]
         for order in friends:
             friend_idx, friend_cnt = 0, 1
             possible_length = start[0] + order[friend_idx]
