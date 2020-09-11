@@ -3,7 +3,12 @@ def solution(numbers, hand):
     # x, y = 3으로 나눈 몫, 3으로 나눈 나머지
     for num in numbers:
         x, y = num//3, num%3
-
+        if y == 1:
+            pass
+        elif y == 0 and num != 0:
+            pass
+        else:
+            pass
     return answer
 
 
