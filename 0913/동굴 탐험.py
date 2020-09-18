@@ -1,5 +1,7 @@
 def solution(start, trr, visit, bottom):
     answer = True
+    # 1. 파이썬에서 트리 구조 구현
+    # 2. 이진 트리의 순회 방법 각각 구현
     return answer
 
 print(solution(9, [[0,1],[0,3],[0,7],[8,1],[3,6],[1,2],[4,7],[7,5]], [[8,5],[6,7],[4,1]]))
