@@ -8,6 +8,11 @@
 def solution(a):
     # 조건을 모두 만족하는 [2차원 배열 b의 경우의 수%(107 + 19)]로 return
     answer = -1
+    # a의 각 열에 있는 1의 개수 세기
+    a_one = []
+    for col in list(zip(*a)):
+        a_one.append(col.count(1))
+    print(a_one)
     return answer
 
 # 6
