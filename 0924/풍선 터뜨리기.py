@@ -9,10 +9,6 @@ def solution(a):
     # 어떤 풍선은 무슨 수를 쓰더라도 마지막까지 남기는 것이 불가능할 수도 있습니다.
     # 규칙대로 풍선을 1개만 최후까지 남기는 것이 가능한 풍선들의 개수를 return
     answer = 2
-
-    # if 0 <= len(a) <= 2:
-    #     answer = len(a)
-
     left, right = a[0], a[-1]
 
     # 1. 임의의 인접한 두 풍선을 고른 뒤, 두 풍선 중 하나를 터트립니다.
@@ -20,17 +16,19 @@ def solution(a):
     # 2~ 빈 공간이 없도록 풍선들을 중앙으로 밀착시킵니다.
     # 조건: 인접한 두 풍선 중 번호가 더 작은 풍선을 터트리는 행위는 최대 1번만 할 수 있습니다.
     for i in range(1, len(a)-1):
+        # print(left)
         if left > a[i]:
             answer += 1
             left = a[i]
+        # print(left)
+        # print()
+        # print(right)
         if right > a[-1-i]:
             answer += 1
             right = a[-1-i]
-
-
-
+        # print(right)
+        # print('------------------')
     return answer if right != left else answer-1
-
 
 # 이 문제의 핵심 아이디어는 다음과 같습니다.
 # 어떤 풍선에 대해, 이 풍선이 끝까지 남겨지기 위해서는 이 풍선보다 작은 풍선이 없거나,
