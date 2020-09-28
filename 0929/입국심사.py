@@ -36,11 +36,13 @@ def solution(n, times):
 print(solution(6, [7, 10])) # 28
 print(solution(7, [7, 10])) # 30
 
-
+# 이분 탐색?
 def solution1(n, times):
     answer = 0
-    L = len(times)
-    cnt = L
+    left, right = 1, max(times)*n
+    while left <= right:
+        mid = (left + right) // 2
+        
 
     return answer
 
