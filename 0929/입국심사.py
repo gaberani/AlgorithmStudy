@@ -1,5 +1,7 @@
 # 입국심사를 기다리는 사람 수 n
 # 각 심사관이 한 명을 심사하는데 걸리는 시간이 담긴 배열 times
+
+# 그리디
 def solution(n, times):
     # 모든 사람이 심사를 받는데 걸리는 시간의 최솟값을 return
     answer, cnt = 0, 0
@@ -33,18 +35,26 @@ def solution(n, times):
             break
     return answer
 
-print(solution(6, [7, 10])) # 28
-print(solution(7, [7, 10])) # 30
+# print(solution(6, [7, 10])) # 28
+# print(solution(7, [7, 10])) # 30
 
-# 이분 탐색?
+# 이분 탐색
 def solution1(n, times):
-    answer = 0
+    # answer = 0
     left, right = 1, max(times)*n
-    while left <= right:
-        mid = (left + right) // 2
-        
-
-    return answer
+    # left를 1*n이라고 두면 틀림 왜징
+    while left < right:
+        # 총 걸리는 시간 mid, 심사관 마다 할 수 있는 사람 수 더하는 cnt
+        mid = (left + right)//2
+        cnt = 0
+        # 심사관 마다 총 걸리는 시간안에 소화 가능한 사람 더하기
+        for simsa in times:
+            cnt += mid // simsa
+        if cnt < n:
+            left = mid + 1
+        else:
+            right = mid
+    return left
 
 
 print(solution1(6, [7, 10])) # 28
