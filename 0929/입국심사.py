@@ -43,6 +43,7 @@ def solution1(n, times):
     # answer = 0
     left, right = 1, max(times)*n
     # left를 1*n이라고 두면 틀림 왜징
+    # 처음에 시작할 때 심사관 수 만큼 들어가고 시작하기 때문!!
     while left < right:
         # 총 걸리는 시간 mid, 심사관 마다 할 수 있는 사람 수 더하는 cnt
         mid = (left + right)//2
