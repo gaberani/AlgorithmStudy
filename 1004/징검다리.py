@@ -3,29 +3,30 @@
 # 바위들이 있는 위치를 담은 배열 rocks,
 # 제거할 바위의 수 n
 def solution(distance, rocks, n):
-    # 바위를 n개 제거한 뒤 각 지점 사이의 거리의 최솟값 중에 가장 큰 값을 return
     answer = 0
-    # 거리를 기준으로 이분탐색
-    left, right = 1, distance
-    # 거리순으로 정렬
-    rocks.sort()
-    while left <= right:
-        mid = (left + right) // 2
-        pre_rock = 0
-        num_rock = 0
-        m_min = 1000000001
-        for rock in rocks:
-            if rock - pre_rock < mid:
-                num_rock += 1
-            else:
-                # 최소거리
-                m_min = min(m_min, rock - pre_rock)
-                pre_rock = rock
+    start, end = 0, distance
+    rocks = sorted(rocks)
+    rocks.append(distance)
+    rnum = len(rocks)
 
-        if num_rock > n:
-            right = mid - 1
+    while start <= end:
+        remove = 0
+        pre = 0
+        min_inter = 10000000001
+        mid = (start + end) // 2
+
+        for i in range(rnum):
+            if rocks[i] - pre < mid:  # rocks[i]-prev가 inter값
+                remove += 1  # 바위제거
+
+            else:  # 바위 제거 안할경우
+                min_inter = min(min_inter, rocks[i] - pre)
+                pre = rocks[i]  # 현재 바위위치를 pre로
+
+        if remove > n:
+            end = mid - 1
         else:
-            answer = m_min
-            left = mid + 1
+            answer = min_inter
+            start = mid + 1
 
     return answer

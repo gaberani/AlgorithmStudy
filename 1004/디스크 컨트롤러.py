@@ -1,5 +1,37 @@
 import heapq
 
+# 시간을 1씩 더하면서 풀기
+def solution1(jobs):
+    answer = 0
+    disk, time, past = [], 0, -1
+    cnt = 0
+    while cnt < len(jobs):
+        # 할 일 찾기
+        for job in jobs:
+            if past < job[0] <= time:
+                answer += (time-job[0])
+                # 작업시간만 추가
+                heapq.heappush(disk, job[1])
+        # 요청된 것이 없을 경우
+        if not disk:
+            time += 1
+        # 이미 요청된 것들이 있을 경우(디스크에 할 일 존재)
+        else:
+            answer += len(disk)*disk[0]
+            past = time
+            time += heapq.heappop(disk)
+            cnt += 1
+    return answer
+
+print(solution1([[0, 3], [1, 9], [2, 6]]))
+print(solution1([[1, 3], [1, 9], [2, 6]]))
+print(solution1([[0, 4], [0, 3], [0, 2], [0, 1]]))
+print(solution1([[0, 3], [1, 9], [2, 6], [20, 3]]))
+print(solution1([[0, 9], [0, 4], [0, 5], [0, 7], [0, 3]]))
+
+
+
+
 def solution(jobs):
     answer = 0
     jobs.sort(key=lambda x: (x[0], x[1]))
@@ -28,33 +60,3 @@ def solution(jobs):
             answer = answer + next_job[1]
             end = sum(next_job)
     return answer // len(jobs)
-
-
-print(solution([[0, 3], [1, 9], [2, 6]]))
-print(solution([[1, 3], [1, 9], [2, 6]]))
-print(solution([[0, 4], [0, 3], [0, 2], [0, 1]]))
-print(solution([[0, 3], [1, 9], [2, 6], [20, 3]]))
-print(solution([[0, 9], [0, 4], [0, 5], [0, 7], [0, 3]]))
-
-
-# 시간을 1씩 더하면서 풀어도 가능
-def solution1(jobs):
-    answer = 0
-    disk, time, past = [], 0, -1
-    cnt = 0
-    while cnt < len(jobs):
-        # 할 일 찾기
-        for job in jobs:
-            if past < job[0] <= time:
-                answer += (time-job[0])
-                heapq.heappush(disk, job[1])
-        # 요청된 것이 없을 경우
-        if not disk:
-            time += 1
-        # 이미 요청된 것들이 있을 경우(디스크에 할 일 존재)
-        else:
-            answer += len(disk)*disk[0]
-            past = time
-            time += heapq.heappop(disk)
-            cnt += 1
-    return answer
