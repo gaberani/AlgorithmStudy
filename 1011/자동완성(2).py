@@ -8,6 +8,7 @@ def solution(words):
     tree = Trie()
     for word in words:
         subtree = tree
+        # string을 enumerate하면 (인덱스, 문자 하나)로 나옴
         for idx, val in enumerate(word):
             print(idx, val)
             subtree.value += 1
@@ -21,17 +22,17 @@ def solution(words):
 
     for word in words:
         subtree = tree
-        counts = 0
+        cnt = 0
         for idx, val in enumerate(word):
             if (subtree.value == 1):
-                answer += counts
+                answer += cnt
                 break
             elif idx == len(word) - 1:
-                answer += counts + 1
+                answer += cnt + 1
                 break
             else:
                 subtree = subtree.next[val]
-                counts += 1
+                cnt += 1
 
     return answer
 

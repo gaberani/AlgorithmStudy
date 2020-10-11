@@ -2,9 +2,77 @@
 # 각 로그 문자열마다 요청에 대한 응답완료시간 S와 처리시간 T
 # 응답완료시간 S는 작년 추석인 2016년 9월 15일만 포함
 # 처리시간(T)는 0.001 ≦ T ≦ 3.000
+
 def solution(lines):
-    answer = 0
+    #get input
+    S, E= [], []
+
+    for line in lines:
+        type(line)
+        (d, p, t) = line.split(" ")
+
+        # 날짜를 제외한 시간을 모두 초로 변환
+        p = float(p[0:-1])
+        (hh, mm, ss) = t.split(":")
+        seconds = float(hh) * 3600 + float(mm) * 60 + float(ss)
+
+        E.append(seconds + 1)
+        S.append(seconds - p + 0.001)
+
+    # 시작시간 정렬
+    S.sort()
+
+    curTraffic, maxTraffic = 0, 0
+
+    countS, countE = 0, 0
+    Length_lines = len(lines)
+    while((countE < Length_lines) & (countS < Length_lines)):
+        if(S[countS] < E[countE]):
+            curTraffic += 1
+            maxTraffic = max(maxTraffic, curTraffic)
+            countS += 1
+        else: ## it means that a line is over.
+            curTraffic -= 1
+            countE += 1
+
+    return maxTraffic
+
+
+def solution(lines):
+    from datetime import datetime
+    start = []
+    end = []
+    # 시간 처리
+    for log in lines:
+        line_split = log.split(" ")
+        first_input = line_split[0] + " " + line_split[1]
+        second_input = line_split[-1].split("s")[0]
+        datetime = datetime.strptime(first_input, '%Y-%m-%d %H:%M:%S.%f')
+        timestamp = datetime.timestamp()
+
+        end.append(timestamp)
+        print(timestamp)
+        start.append(timestamp-float(second_input) + 0.001)
+        print(timestamp)
+
+    count_start = [0] * len(start)
+    count_end = [0] * len(end)
+
     # 각 요청마다의 처리시간 사이에 있는 로그 찾기
+    for i in range(len(start)):
+        for j in range(len(start)):
+            if not(start[i] + 1 < start[j] or end[j] < start[i]):
+                count_start[i] = count_start[i] + 1
+
+    for i in range(len(end)):
+        for j in range(len(start)):
+            if  not(end[i] + 1 <= start[j] or end[j] < end[i]):
+                count_end[i] = count_end[i] + 1
+
+    max_count = max(max(count_start), max(count_end))
+
+    answer = max_count
+
     return answer
 
 print(solution([
