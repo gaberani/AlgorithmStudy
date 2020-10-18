@@ -2,6 +2,7 @@ def solution(arr):
     answer = []
     L = len(arr)
     N = 0
+    # 행렬의 길이가 2의 몇 제곱인지 구하기
     while L > 1:
         L //= 2
         N += 1
