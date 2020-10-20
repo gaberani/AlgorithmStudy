@@ -36,6 +36,7 @@ print(solution(16, [], 2))
 # 집의 개수가 N일때
 # 선형복잡도 O(N)을 가지면 효율성 테스트를 통과하지 못하고,
 # station의 개수가 T라면 O(T)로 문제를 풀어내야 합니다.
+# https://grapetown.tistory.com/78
 # 집 기준 풀이
 def solution1(N, stations, W):
     answer = 0
