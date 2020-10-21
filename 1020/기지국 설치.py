@@ -6,7 +6,6 @@
 # 현재 기지국이 설치된 아파트의 번호가 담긴 1차원 배열 stations
 # 전파의 도달 거리 W
 
-
 # station 기준 풀이
 def solution(N, stations, W):
     answer = 0
