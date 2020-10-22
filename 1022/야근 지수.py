@@ -4,11 +4,38 @@
 
 # 퇴근까지 남은 N 시간과 각 일에 대한 작업량 works에 대해
 # 야근 피로도를 최소화한 값을 리턴하는 함수 solution
-def solution(n, works):
-    answer = 0
+def solution1(n, works):
+    while n != 0:
+        max_work = max(works)
+        max_idx = works.index(max_work)
+        works[max_idx] -= 1
+        n -= 1
+    answer = sum(w ** 2 for w in works)
     return answer
 
+def solution3(n, works):
+    if n >= sum(works):
+        return 0
+    works = sorted(works)[::-1]
+    flag = 0
+    while 1:
+        max_num = works[0]
+        for i in range(len(works)):
+            if works[i]:
+                if works[i] == max_num and n > 0:
+                    works[i] -= 1
+                    n -= 1
+                elif works[i] != max_num and n > 0:
+                    break
+                else:
+                    flag = 1
+                    break
+        if flag:
+            break
+    answer = sum(w ** 2 for w in works)
+    return answer
+    # return answer
 
-print(solution([4, 3, 3], 4))
-print(solution([2, 1, 2], 1))
-print(solution([1, 1], 3))
+print(solution3(4, [4, 3, 3]))
+print(solution3(1, [2, 1, 2]))
+print(solution3(3, [1, 1]))
