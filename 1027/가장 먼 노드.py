@@ -9,31 +9,57 @@
 # 노드의 개수 n
 # 간선에 대한 정보가 담긴 2차원 배열 vertex
 def solution(n, edges):
-    # 1번 노드로부터 가장 멀리 떨어진 노드가 몇 개인지를 return
-    answer = 0
+    def bfs():
+        q = []
+        q.append(1)
 
-    graph = [[0]*(n+1) for _ in range(n+1)]
-    for edge in edges:
-        graph[edge[0]][edge[1]] = 1
-        graph[edge[1]][edge[0]] = 1
+        while q:
+            i = q.pop(0)
+            for j in graph[i]:
+                if visit[j] == -1:
+                    visit[j] = visit[i]+1
+                    q.append(j)
 
-    cnt_dic = {}
+    graph = [[] for _ in range(n+1)]
+    for i, j in edges:
+        graph[i].append(i)
+        graph[j].append(j)
 
-    def dfs(cnt, visit):
+    visit = [-1]*(n+1)
+    visit[1] = 0
 
-    # max_cnt = 1
-    # for start in range(n+1):
-    #     cnt = 0
-    #     if graph[1][start]:
-    #         col = start
-    #         while graph[start][col]:
-    #             for
-    #             start = graph[start]
-    #             cnt += 1
-    #     if cnt > max_cnt:
-    #         answer, max_cnt = 1, cnt
-    #     elif cnt == max_cnt:
-    #         answer += 1
-    # return answer
+    bfs()
+    print(visit)
+    return visit.count(max(visit))
+
+# def solution(n, edges):
+#     # 1번 노드로부터 가장 멀리 떨어진 노드가 몇 개인지를 return
+#     answer = 0
+#
+#     graph = [[0]*(n+1) for _ in range(n+1)]
+#     for edge in edges:
+#         graph[edge[0]][edge[1]] = 1
+#         graph[edge[1]][edge[0]] = 1
+#     for g in graph: print(g)
+#     print(graph)
+#
+#     cnt_dic = {num: [] for num in range(n+1)}
+#     for j in range(1, n+1):
+#         # 1번 노드에 연결되는 곳이 있으면 시작
+#         if graph[1][j]:
+#             cnt_dic[0].append('1'+str(j))
+#     print(cnt_dic)
+#
+#     cnt = 0
+#     while 1:
+#         for start in cnt_dic[cnt]:
+#             for j in range(1, n+1):
+#                 # print(int(start[-1]))
+#                 if graph[int(start[-1])][j] and str(j) not in start:
+#                     cnt_dic[cnt+1].append(start+str(j))
+#         print(cnt_dic)
+#         if cnt_dic[cnt+1] == []: break
+#         cnt += 1
+#     return answer
 
 print(solution(6, [[3, 6], [4, 3], [3, 2], [1, 3], [1, 2], [2, 4], [5, 2]]))
