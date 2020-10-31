@@ -2,4 +2,7 @@
 # 도둑이 훔칠 수 있는 돈의 최댓값을 return
 def solution(money):
     answer = 0
+    dp = [0]*len(money)
+    dp[0], dp[1] = money[0], money[1]
+
     return answer
