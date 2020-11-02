@@ -7,4 +7,16 @@
 # 정확하게 순위를 매길 수 있는 선수의 수를 return
 def solution(n, results):
     answer = 0
+    L = len(results)
+    grid = [[0]*L for _ in range(L)]
+    for r1, r2 in results:
+        grid[r1][r2] = -1
+        grid[r2][r1] = 1
+    for i in range(L):
+        for j in range(L):
+            if grid[i][L]:
+
+            if grid[L][i]:
     return answer
+
+print(solution([[4, 3], [4, 2], [3, 2], [1, 2], [2, 5]], 2))
