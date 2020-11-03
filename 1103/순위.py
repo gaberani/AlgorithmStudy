@@ -19,11 +19,10 @@ def solution(n, results):
     for i in range(1, n+1):
         # i에게 진 사람들은 i를 이긴 사람에게 짐
         for loser in winners[i]:
-            losers[loser] |= losers[i]
-
+            losers[loser].update(losers[i])
         # i를 이긴 사람들은 i에게 진 사람도 이김
         for winner in losers[i]:
-            winners[winner] |= winners[i]
+            winners[winner].update(winners[i])
 
     # print(winners)
     # print(losers)
