@@ -11,6 +11,13 @@ def solution(genres, plays):
     # 베스트 앨범에 들어갈 노래의 고유 번호를 순서대로 return
     # 장르에 속한 곡이 하나라면, 하나의 곡만 선택
     answer = []
+    genre_dict = {}
+    for genre, val in zip(genres, plays):
+        if genre_dict.get(genre) == None:
+            genre_dict[genre] = val
+        else:
+            genre_dict[genre] += val
+    print(genre_dict)
     return answer
 
 print(solution(['classic', 'pop', 'classic', 'classic', 'pop'], [500, 600, 150, 800, 2500]))
