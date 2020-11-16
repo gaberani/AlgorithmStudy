@@ -22,7 +22,10 @@ def solution(begin, end):
         print(i)
         if not i%2:
             answer[i-1] = i//2
-    # 만약 기존에 블록이 깔려있는 자리라면 그 블록을 새로운 블록으로
+        # 만약 기존에 블록이 깔려있는 자리라면 그 블록을 새로운 블록으로
+        if answer[i-1]:
+            answer[i-1] = i//2
+
     return answer
 
 print(solution(1, 10))
