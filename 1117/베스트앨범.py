@@ -12,12 +12,27 @@ def solution(genres, plays):
     # 장르에 속한 곡이 하나라면, 하나의 곡만 선택
     answer = []
     genre_dict = {}
+    idx = 0
     for genre, val in zip(genres, plays):
         if genre_dict.get(genre) == None:
-            genre_dict[genre] = val
+            genre_dict[genre] = [val, [idx, val]]
         else:
-            genre_dict[genre] += val
+            genre_dict[genre][0] += val
+            genre_dict[genre].append([idx, val])
+        idx += 1
     print(genre_dict)
+    genre_lsts = sorted(genre_dict.values(), key = lambda x: (-x[0], x[1]))
+    sorted_lst = []
+    for genre_lst in genre_lsts:
+        val, lst = genre_lst[0], list(genre_lst[1:])
+        sorted_lst.append([val, sorted(lst, key = lambda x: -x[-1])])
+    # print(sorted_lst)
+
+    for one_genre in sorted_lst:
+        play_musics = one_genre[1][:2]
+        for play_music in play_musics:
+            answer.append(play_music[0])
+
     return answer
 
-print(solution(['classic', 'pop', 'classic', 'classic', 'pop'], [500, 600, 150, 800, 2500]))
+print(solution(['classic', 'classic', 'classic', 'pop'], [500, 150, 800, 2500]))
