@@ -28,12 +28,11 @@ class Solution(object):
         if sum_value: answer.append(1)
 
         return answer
-        # for i in range(max(len(l1), len(l2))- min(len(l1), len(l2))):
 
 
 
 
-
+    # 제출한 정답
     def addTwoNumbers2(self, l1, l2):
         """
         :type l1: ListNode
