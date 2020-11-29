@@ -41,6 +41,7 @@ class Solution(object):
         """
         # l1과 l2가 ListNode로 구현되어있음.
         root = cur = ListNode(0)
+        print(root)
         carry = 0
         while l1 or l2 or carry:
             if l1:
@@ -56,9 +57,9 @@ class Solution(object):
 
 
 test = Solution()
-print(test.addTwoNumbers([2,4,3], [5,6,4]))
+print(test.addTwoNumbers2(ListNode([2,4,3]), ListNode([5,6,4])))
 # [7, 0, 8]
-print(test.addTwoNumbers([0], [0]))
+print(test.addTwoNumbers2([0], [0]))
 # [0]
-print(test.addTwoNumbers([9,9,9,9,9,9,9],[9,9,9,9]))
+print(test.addTwoNumbers2([9,9,9,9,9,9,9],[9,9,9,9]))
 # [8,9,9,9,0,0,0,1]
