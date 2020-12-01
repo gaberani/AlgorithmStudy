@@ -11,6 +11,23 @@ class Solution(object):
         :type nums: List[int]
         :rtype: bool
         """
+        # def operator(a, b, cnt):
+        #     if cnt == 0: return a+b
+        #     elif cnt == 1: return a-b
+        #     elif cnt == 2: return a*b
+        #     elif cnt == 3: return a/b
+
+        def dfs(idx, nums_cnt):
+            if idx == 4:
+                sum_num = 0
+            else:
+                for i in range(4):
+                    visit[i] = 1
+                    dfs(idx+1)
+                    visit[i] = 0
+        visit = [0]*4
+        dfs(0)
+
 
 
 # Input: [4, 1, 8, 7]
@@ -19,3 +36,7 @@ class Solution(object):
 
 # Input: [1, 2, 1, 2]
 # Output: False
+
+import math
+print(math.ceil(4/(1-2/3)))
+print(math.ceil(12))
