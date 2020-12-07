@@ -1,4 +1,5 @@
 class Solution(object):
+    # 3320
     def groupAnagrams(self, strs):
         """
         :type strs: List[str]
@@ -21,6 +22,14 @@ class Solution(object):
                 str_dic.append([s_dic, str])
         return [a[1:] for a in str_dic]
 
+    # 100
+    def Solution1(self, strs):
+        d = {}
+        for w in sorted(strs):
+            # 왜 튜플인가? 요소값을 지우거나 변경할 수 없다. => 딕셔너리 키로 사용 가능
+            key = tuple(sorted(w))
+            d[key] = d.get(key, []) + [w]
+        return d.values()
 
 test = Solution()
 print(test.groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
