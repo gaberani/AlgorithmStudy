@@ -13,13 +13,12 @@ class Solution(object):
         :type root: TreeNode
         :rtype: List[int]
         """
-        answer = [root.val]
-        while root.right == None:
-
-        if not answer:
-            answer.append(r.val)
-        else:
-            answer.append(r.right)
+        print(root)
+        answer = []
+        while root:
+            answer.append(root.val)
+            root = root.right if root.right else root.left
+        return answer
 
     def rightSideView(self, root):
         # 비어있을 경우
@@ -44,6 +43,8 @@ class Solution(object):
 # 2     3         <---
 #  \     \
 #   5     4       <---
+#  /
+#  6
 
 # [1, 2, 3, 4]
 # TreeNode{val: 1,
