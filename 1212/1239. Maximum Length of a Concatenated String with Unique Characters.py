@@ -28,15 +28,15 @@ class Solution(object):
         answer = 0
         for i in range(len(arr)):
             sz = len(uniqELements)
-            # print(sz)
+            print(sz)
             for j in range(sz):
                 x = arr[i] + uniqELements[j]
                 # print(x)
                 if (len(x) == len(set(x))):
                     uniqELements.append(x)
-                    # print(uniqELements)
+                    print(uniqELements)
                     answer = max(answer, len(x))
-        # print(uniqELements)
+        print(uniqELements)
         return answer
 
 test = Solution()

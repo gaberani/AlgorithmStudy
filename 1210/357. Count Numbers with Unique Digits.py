@@ -10,9 +10,11 @@ class Solution(object):
         """
         # n과 같은 길이를 갖고 있고 
         # set를 써서 중복없애면 길이가 1인 경우 전부 제외
-        for i in range(10**n):
-            print(i)
-            
+        answer = 10 ** n
+        for i in range(10 ** n):
+            if len(set(str(i))) == 1 and len(str(i)) == n and 1 != n:
+                answer -= 1
+        return answer
         
 # Input: 2
 # Output: 91 
