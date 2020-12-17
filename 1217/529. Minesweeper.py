@@ -62,6 +62,13 @@ class Solution(object):
         return board
 
 
+print(Solution.updateBoard(
+    [['E', 'E', 'E', 'E', 'E'],
+     ['E', 'E', 'M', 'E', 'E'],
+     ['E', 'E', 'E', 'E', 'E'],
+     ['E', 'E', 'E', 'E', 'E']],
+     [3, 0]))
+
 # Input:
 # [['E', 'E', 'E', 'E', 'E'],
 #  ['E', 'E', 'M', 'E', 'E'],
