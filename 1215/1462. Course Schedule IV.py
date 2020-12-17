@@ -11,7 +11,6 @@
 
 # You should answer for each queries[i]
 # whether the course queries[i][0] is a prerequisite of the course queries[i][1] or not.
-#
 
 # Return a list of boolean, the answers to the given queries.
 # 각 쿼리별 응답을 담은 리스트로 리턴
